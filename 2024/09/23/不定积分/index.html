@@ -19,16 +19,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基本积分公式 线性性质换元积分第一类换元第二类换元">
+    <meta name="description" content="一. 基本积分公式  二. 线性性质  三. 换元积分1.第一类换元核心 ：对于 f’(g(x))g’(x)dx 利用（凑）常用的函数导数形式g’(x)和dx因子变换为d(g(x)),这时 f’(g(x))d(g(x)) 的积分显然为 f(g(x)). 2.第二类换元a.第一类三角换元常用于去除根式 1 + x^2 &#x3D; 1 + (tan t)^2 &#x3D; (sec t)^2 1 -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不定积分">
 <meta property="og:url" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/index.html">
 <meta property="og:site_name" content="poirot">
-<meta property="og:description" content="基本积分公式 线性性质换元积分第一类换元第二类换元">
+<meta property="og:description" content="一. 基本积分公式  二. 线性性质  三. 换元积分1.第一类换元核心 ：对于 f’(g(x))g’(x)dx 利用（凑）常用的函数导数形式g’(x)和dx因子变换为d(g(x)),这时 f’(g(x))d(g(x)) 的积分显然为 f(g(x)). 2.第二类换元a.第一类三角换元常用于去除根式 1 + x^2 &#x3D; 1 + (tan t)^2 &#x3D; (sec t)^2 1 -">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg">
+<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923183423.jpg">
+<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923192501.jpg">
+<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194230.jpg">
+<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194255.jpg">
+<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923195846.jpg">
+<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923201034.jpg">
 <meta property="article:published_time" content="2024-09-23T08:32:03.000Z">
-<meta property="article:modified_time" content="2024-09-23T08:48:58.117Z">
+<meta property="article:modified_time" content="2024-09-23T15:01:54.817Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg">
@@ -239,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24 字
+          701 字
         
       </span>
     
@@ -250,7 +256,7 @@
         
         
         
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -301,8 +307,47 @@
             
               <div class="markdown-body">
                 
-                <h3 id="基本积分公式"><a href="#基本积分公式" class="headerlink" title="基本积分公式"></a>基本积分公式</h3><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg" srcset="/img/loading.gif" lazyload></p>
-<h3 id="线性性质"><a href="#线性性质" class="headerlink" title="线性性质"></a>线性性质</h3><h2 id="换元积分"><a href="#换元积分" class="headerlink" title="换元积分"></a>换元积分</h2><h3 id="第一类换元"><a href="#第一类换元" class="headerlink" title="第一类换元"></a>第一类换元</h3><h3 id="第二类换元"><a href="#第二类换元" class="headerlink" title="第二类换元"></a>第二类换元</h3>
+                <h2 id="一-基本积分公式"><a href="#一-基本积分公式" class="headerlink" title="一. 基本积分公式"></a>一. 基本积分公式</h2><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="二-线性性质"><a href="#二-线性性质" class="headerlink" title="二. 线性性质"></a>二. 线性性质</h2><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923183423.jpg" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="三-换元积分"><a href="#三-换元积分" class="headerlink" title="三. 换元积分"></a>三. 换元积分</h2><h3 id="1-第一类换元"><a href="#1-第一类换元" class="headerlink" title="1.第一类换元"></a>1.第一类换元</h3><p><em><strong>核心 ：对于 f’(g(x))g’(x)dx 利用（凑）常用的函数导数形式g’(x)和dx因子变换为d(g(x)),这时 f’(g(x))d(g(x)) 的积分显然为 f(g(x)).</strong></em></p>
+<h3 id="2-第二类换元"><a href="#2-第二类换元" class="headerlink" title="2.第二类换元"></a>2.第二类换元</h3><h4 id="a-第一类三角换元"><a href="#a-第一类三角换元" class="headerlink" title="a.第一类三角换元"></a>a.第一类三角换元</h4><p><strong>常用于去除根式</strong></p>
+<p><em><strong>1 + x^2 &#x3D; 1 + (tan t)^2 &#x3D; (sec t)^2</strong></em></p>
+<p><em><strong>1 - x^2 &#x3D; 1 + (sin t)^2 &#x3D; (cos t)^2</strong></em></p>
+<p><em><strong>x^2 - 1&#x3D; (sec t)^2 - 1 &#x3D; (tan t)^2</strong></em></p>
+<p><em><strong>csc^2x &#x3D; 1 + cot^2x</strong></em></p>
+<h4 id="b-第二类去根式"><a href="#b-第二类去根式" class="headerlink" title="b.第二类去根式"></a>b.第二类去根式</h4><p><em><strong>t &#x3D; (f(x))^(1&#x2F;2)</strong></em></p>
+<p><em><strong>则t^2 &#x3D; f(x) …</strong></em></p>
+<h4 id="c-第三类倒代换"><a href="#c-第三类倒代换" class="headerlink" title="c.第三类倒代换"></a>c.第三类倒代换</h4><p><strong>分母阶数较高时，可采用倒代换（x &#x3D; 1 &#x2F; t）</strong></p>
+<h4 id="d-第四类去根式"><a href="#d-第四类去根式" class="headerlink" title="d.第四类去根式"></a>d.第四类去根式</h4><p><strong>当被积分式存在不同次根式，应令t &#x3D; x ^ n, n 为根式次数倒数的最小公倍数</strong><br><em><strong>x^(1&#x2F;2) + x ^(1&#x2F;3) &#x3D; t^3 + t ^2, t^6 &#x3D; x</strong></em></p>
+<hr>
+<h2 id="四-分部积分"><a href="#四-分部积分" class="headerlink" title="四. 分部积分"></a>四. 分部积分</h2><p><strong>udv &#x3D; (uv)’ - vdu, 选u核心：v 容易求，且vdu的原函数比udv的原函数好求。</strong><br><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923192501.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="方法一：-为简化而分部积分"><a href="#方法一：-为简化而分部积分" class="headerlink" title="方法一： 为简化而分部积分"></a>方法一： 为简化而分部积分</h3><p><em><strong>如xe^xdx &#x3D; (xe^x)’ - e^xdx &#x3D; …, 显然有指数函数求导后复杂度不变，所以基本不选指数函数为u;</strong></em></p>
+<p><em><strong>对数函数求导后可以简化为幂函数； 所以常选对数函数为u;</strong></em></p>
+<h3 id="方法二：为造循环而分部"><a href="#方法二：为造循环而分部" class="headerlink" title="方法二：为造循环而分部"></a>方法二：为造循环而分部</h3><h4 id="典型例子"><a href="#典型例子" class="headerlink" title="典型例子"></a>典型例子</h4><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194230.jpg" srcset="/img/loading.gif" lazyload><br><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194255.jpg" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h2 id="五-有理函数积分"><a href="#五-有理函数积分" class="headerlink" title="五. 有理函数积分"></a>五. 有理函数积分</h2><p><strong>两个多项式之商，有理函数。</strong></p>
+<p><em><strong>核心：每个实系数多项式都可以分解为一些<code>一次</code>和<code>二次</code>的<code>不可约</code>多项式乘积（代数基本定理）</strong></em></p>
+<p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923195846.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="步骤1-将有理函数化为真分数"><a href="#步骤1-将有理函数化为真分数" class="headerlink" title="步骤1 : 将有理函数化为真分数."></a>步骤1 : 将有理函数化为真分数.</h3><h3 id="步骤2-化为上图的和形式"><a href="#步骤2-化为上图的和形式" class="headerlink" title="步骤2 : 化为上图的和形式."></a>步骤2 : 化为上图的和形式.</h3><h3 id="步骤3-对于1-x-a-n可以直接积分"><a href="#步骤3-对于1-x-a-n可以直接积分" class="headerlink" title="步骤3 : 对于1&#x2F;(x+a)^n可以直接积分."></a>步骤3 : 对于1&#x2F;(x+a)^n可以直接积分.</h3><h3 id="步骤4-对于-ax-b-x-2-px-q-n-按如下积分："><a href="#步骤4-对于-ax-b-x-2-px-q-n-按如下积分：" class="headerlink" title="步骤4 : 对于(ax+b)&#x2F;(x^2+px+q)^n, 按如下积分："></a>步骤4 : 对于(ax+b)&#x2F;(x^2+px+q)^n, 按如下积分：</h3><p><em><strong>令t &#x3D; x + p&#x2F;2, 接下来…</strong></em><br><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923201034.jpg" srcset="/img/loading.gif" lazyload><br><em><strong>加号左边可以tdt化为1&#x2F;2d(t^2+a^2)来积分（积分结果为有理函数分式）， 加号右边可以分部积分，求In的递推式即可(积分结果会出现反三角函数)。</strong></em></p>
+<hr>
+<h2 id="六-可化为有理函数的积分"><a href="#六-可化为有理函数的积分" class="headerlink" title="六. 可化为有理函数的积分"></a>六. 可化为有理函数的积分</h2><h3 id="1-三角函数有理式R-sinx-cosx"><a href="#1-三角函数有理式R-sinx-cosx" class="headerlink" title="1. 三角函数有理式R(sinx, cosx)"></a>1. 三角函数有理式R(sinx, cosx)</h3><p><em><strong>u &#x3D; tan x&#x2F;2</strong></em></p>
+<p><em><strong>sin x &#x3D; 2u&#x2F;(1+u^2)</strong></em></p>
+<p><em><strong>cos x &#x3D; (1-u^2)&#x2F;(1+u^2)</strong></em></p>
+<p><em><strong>dx &#x3D; 2&#x2F;(1+u^2)du</strong></em></p>
+<p>或</p>
+<p><em><strong>u &#x3D; tan x</strong></em></p>
+<p><em><strong>sin x &#x3D; u&#x2F;(1+u^2)^(1&#x2F;2)</strong></em></p>
+<p><em><strong>cos x &#x3D; 1&#x2F;(1+u^2)^(1&#x2F;2)</strong></em></p>
+<p><em><strong>dx &#x3D; 1&#x2F;(1+u^2)du</strong></em></p>
+<hr>
+<h3 id="2-其他化为有理函数的积分"><a href="#2-其他化为有理函数的积分" class="headerlink" title="2. 其他化为有理函数的积分"></a>2. 其他化为有理函数的积分</h3><p><em><strong>u &#x3D; e^x, dx &#x3D; 1&#x2F;u du</strong></em></p>
+<p><strong>显然消除了指数函数，转换为有理形式了，更适用于指数函数多而杂的分式</strong></p>
+<hr>
+<h3 id="3-简化无理函数的积分"><a href="#3-简化无理函数的积分" class="headerlink" title="3. 简化无理函数的积分"></a>3. 简化无理函数的积分</h3><p><em><strong>讨论类型R(x, [(ax+b)&#x2F;(cx+d)]^1&#x2F;n)</strong></em></p>
+<p><strong>核心：去根号，令t &#x3D; [(ax+b)&#x2F;(cx+d)]^1&#x2F;n, x &#x3D; f(t^n)</strong></p>
+
                 
               </div>
             

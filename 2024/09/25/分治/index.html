@@ -19,31 +19,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一. 基本积分公式  二. 线性性质  三. 换元积分1.第一类换元核心 ：对于 f’(g(x))g’(x)dx 利用（凑）常用的函数导数形式g’(x)和dx因子变换为d(g(x)),这时 f’(g(x))d(g(x)) 的积分显然为 f(g(x)). 2.第二类换元a.第一类三角换元常用于去除根式 1 + x^2 &#x3D; 1 + (tan t)^2 &#x3D; (sec t)^2 1 -">
+    <meta name="description" content="DIVIDE-CONQUER-COMBINE1.最大子数组问题我们采用常用的分治策略，常规取点数组中点mid，最大子数组一定在以下三种情况中出现  出现在A[left : mid]的子数组   出现在A[mid : right]的子数组   出现在A[left ...mid...right]的子数组, 一定跨越分点mid  我们发现这两个子问题和一个combine问题结果中最大的值就是所求值 12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不定积分">
-<meta property="og:url" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/index.html">
+<meta property="og:title" content="分治">
+<meta property="og:url" content="https://poirotyyds.github.io/2024/09/25/%E5%88%86%E6%B2%BB/index.html">
 <meta property="og:site_name" content="poirot">
-<meta property="og:description" content="一. 基本积分公式  二. 线性性质  三. 换元积分1.第一类换元核心 ：对于 f’(g(x))g’(x)dx 利用（凑）常用的函数导数形式g’(x)和dx因子变换为d(g(x)),这时 f’(g(x))d(g(x)) 的积分显然为 f(g(x)). 2.第二类换元a.第一类三角换元常用于去除根式 1 + x^2 &#x3D; 1 + (tan t)^2 &#x3D; (sec t)^2 1 -">
+<meta property="og:description" content="DIVIDE-CONQUER-COMBINE1.最大子数组问题我们采用常用的分治策略，常规取点数组中点mid，最大子数组一定在以下三种情况中出现  出现在A[left : mid]的子数组   出现在A[mid : right]的子数组   出现在A[left ...mid...right]的子数组, 一定跨越分点mid  我们发现这两个子问题和一个combine问题结果中最大的值就是所求值 12">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923183423.jpg">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923192501.jpg">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194230.jpg">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194255.jpg">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923195846.jpg">
-<meta property="og:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923201034.jpg">
-<meta property="article:published_time" content="2024-09-23T08:32:03.000Z">
-<meta property="article:modified_time" content="2024-09-23T15:01:54.817Z">
+<meta property="article:published_time" content="2024-09-25T05:02:08.000Z">
+<meta property="article:modified_time" content="2024-09-25T08:25:35.458Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法设计与分析">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://poirotyyds.github.io/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>不定积分 - poirot</title>
+  <title>分治 - poirot</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="不定积分"></span>
+            <span id="subtitle" data-typed-text="分治"></span>
           
         </div>
 
@@ -233,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-23 16:32" pubdate>
-          2024年9月23日 下午
+        <time datetime="2024-09-25 13:02" pubdate>
+          2024年9月25日 下午
         </time>
       </span>
     
@@ -245,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          701 字
+          640 字
         
       </span>
     
@@ -302,51 +295,38 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">不定积分</h1>
+            <h1 id="seo-header">分治</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="一-基本积分公式"><a href="#一-基本积分公式" class="headerlink" title="一. 基本积分公式"></a>一. 基本积分公式</h2><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923163448.jpg" srcset="/img/loading.gif" lazyload></p>
+                <h2 id="DIVIDE-CONQUER-COMBINE"><a href="#DIVIDE-CONQUER-COMBINE" class="headerlink" title="DIVIDE-CONQUER-COMBINE"></a>DIVIDE-CONQUER-COMBINE</h2><h2 id="1-最大子数组问题"><a href="#1-最大子数组问题" class="headerlink" title="1.最大子数组问题"></a>1.最大子数组问题</h2><p><em><strong>我们采用常用的分治策略，常规取点数组中点mid，最大子数组一定在以下三种情况中出现</strong></em></p>
+<blockquote>
+<p>出现在<code>A[left : mid]</code>的子数组</p>
+</blockquote>
+<blockquote>
+<p>出现在<code>A[mid : right]</code>的子数组</p>
+</blockquote>
+<blockquote>
+<p>出现在<code>A[left ...mid...right]</code>的子数组, 一定跨越分点mid</p>
+</blockquote>
+<p><strong>我们发现这两个子问题和一个combine问题结果中最大的值就是所求值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c">find_max (A, low, high)<br>    <span class="hljs-keyword">if</span> low == high <br>    <span class="hljs-keyword">return</span> (low, high, A[low])    <span class="hljs-comment">// 基本问题</span><br>    <span class="hljs-keyword">else</span> mid = (low + high) / <span class="hljs-number">2</span>    <span class="hljs-comment">// 列出上述三种情况</span><br>        <span class="hljs-comment">// 1.左子问题</span><br>        (left_low, left_high, left_sum) = find_max(A, low, mid)<br>        <span class="hljs-comment">// 2。右子问题</span><br>        (right_low, right_high, right_sum) = find_max(A, mid, right)<br>        <span class="hljs-comment">/***CONQUER需要线性时间寻找过mid的最大子数组***/</span><br>        sum1 = <span class="hljs-number">-9999999</span> <span class="hljs-comment">// mid左边的最小值</span><br>        sum2 = <span class="hljs-number">-9999999</span><br>        sum = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i = mid downto low<br>            sum += A[i]<br>            <span class="hljs-keyword">if</span> sum1 &lt; sum<br>                sum1 = sum;<br>                cross_mid_left = i<br>        sum = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">for</span> i = mid + <span class="hljs-number">1</span> to low<br>            sum += A[i]<br>            <span class="hljs-keyword">if</span> sum2 &lt; sum<br>                sum2 = sum;<br>                cross_mid_rightt = i<br>        <span class="hljs-comment">// 3.经过mid</span><br>        (cross_mid_low, cross_mid_high, cross_mid_sum) = (cross_mid_left, cross_mid_right, sum1 + sum2)<br>        <span class="hljs-comment">// 选择和最大的子数组，返回三元组</span><br>        <span class="hljs-keyword">if</span> left_sum &gt;= right_sum and left_sum &gt;= cross_mid_sum<br>            <span class="hljs-keyword">return</span> (left_low, left_high, left_sum)<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> right_sum &gt;= left_sum and right_sum &gt;= cross_mid_sum<br>            <span class="hljs-keyword">return</span> (right_low, right_high, right_sum) <br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> (cross_mid_low, cross_mid_high, cross_mid_sum)                        <br></code></pre></td></tr></table></figure>
+<p><em><strong>T(n) &#x3D; 2T(n&#x2F;2) + θ(n) &#x3D;&gt; T(n) &#x3D; θ(nlogn)</strong></em></p>
 <hr>
-<h2 id="二-线性性质"><a href="#二-线性性质" class="headerlink" title="二. 线性性质"></a>二. 线性性质</h2><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923183423.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-矩阵乘法的Strassen算法"><a href="#2-矩阵乘法的Strassen算法" class="headerlink" title="2.矩阵乘法的Strassen算法"></a>2.矩阵乘法的Strassen算法</h2><p><strong>显然蛮力算法需要θ(n^3)，我们下面采取分治策略优化算法</strong></p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a><em>思考</em></h3><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs inform7">//常规的想法，将矩阵分成不同的部分，分别求矩阵乘法进行组合。<br>c = <span class="hljs-comment">[<span class="hljs-comment">[c11, c12]</span><span class="hljs-comment">[c21, c22]</span>]</span> =  a * b = <span class="hljs-comment">[a11, a12]</span><span class="hljs-comment">[a21, a22]</span> * <span class="hljs-comment">[b11, b12]</span><span class="hljs-comment">[b21, b22]</span><br>c11 = a11 * b11 + a12 * b21<br>c12 = a11 * b12 + a12 * b22<br>c21 = a21 * b11 + a22 * b21<br>c22 = a21 * b12 + a22 * b22   <br></code></pre></td></tr></table></figure>
+<p><em><strong>上述分治思路正确,T(n) &#x3D; 8T(n&#x2F;2) + θ(n^2)&#x3D;O(n^3), 其中的θ(n^2)是矩阵求和、查询矩阵的工作量</strong></em></p>
+<p><strong>但很明显，算法仍然是n^3的时间复杂度</strong></p>
+<h3 id="从递推式分析优化"><a href="#从递推式分析优化" class="headerlink" title="从递推式分析优化"></a><em>从递推式分析优化</em></h3><p><em><strong>核心：T(n) &#x3D; 8T(n&#x2F;2) + θ(n^2)，由于是矩阵相关算法，所以工作量一定不小于o(n^2),故考虑减少T(n&#x2F;2)的系数</strong></em></p>
+<h3 id="Strassen方法"><a href="#Strassen方法" class="headerlink" title="Strassen方法"></a><em>Strassen方法</em></h3><p><em><strong>根据上述思考，为减少T(n&#x2F;2)的系数，势必要在求C矩阵的子矩阵中减少矩阵乘法,我们是否可以通过已经求得的子矩阵乘法结果，利用代数运算来求出其他未求的子矩阵乘积呢？如下示。</strong></em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c">S1 = B12 - B22<br>S2 = A11 + A12<br>S3 = A21 + A22<br>S4 = B21 - B11<br>S5 = A11 + A22<br>S6 = B11 + B22<br>S7 = A12 - A22<br>S8 = B21 + B22<br>S9 = A11 - A21<br>S10 = B11 + B12<br><span class="hljs-comment">//7次矩阵相乘！！！</span><br>P1 = A11 *S1<br>P2 = S2 * B22<br>P3 = S3 * B11<br>P4 = A22 * S4<br>P5 = S5 * S6<br>P6 = S7 * S8<br>P7 = S9 * S10<br></code></pre></td></tr></table></figure>
+<p><em><strong>C11 &#x3D; P5 + P4 - P2 + P6</strong></em></p>
+<p><em><strong>C12 &#x3D; P1 + P2</strong></em></p>
+<p><em><strong>C21 &#x3D; P3 + P4</strong></em></p>
+<p><em><strong>C22 &#x3D; P5 + P1 - P3 - P7</strong></em></p>
+<p><em><strong>系数变为7，由主定理和工作量分析知Strassen算法时间复杂度为O(n^log7)</strong></em></p>
 <hr>
-<h2 id="三-换元积分"><a href="#三-换元积分" class="headerlink" title="三. 换元积分"></a>三. 换元积分</h2><h3 id="1-第一类换元"><a href="#1-第一类换元" class="headerlink" title="1.第一类换元"></a>1.第一类换元</h3><p><em><strong>核心 ：对于 f’(g(x))g’(x)dx 利用（凑）常用的函数导数形式g’(x)和dx因子变换为d(g(x)),这时 f’(g(x))d(g(x)) 的积分显然为 f(g(x)).</strong></em></p>
-<h3 id="2-第二类换元"><a href="#2-第二类换元" class="headerlink" title="2.第二类换元"></a>2.第二类换元</h3><h4 id="a-第一类三角换元"><a href="#a-第一类三角换元" class="headerlink" title="a.第一类三角换元"></a>a.第一类三角换元</h4><p><strong>常用于去除根式</strong></p>
-<p><em><strong>1 + x^2 &#x3D; 1 + (tan t)^2 &#x3D; (sec t)^2</strong></em></p>
-<p><em><strong>1 - x^2 &#x3D; 1 + (sin t)^2 &#x3D; (cos t)^2</strong></em></p>
-<p><em><strong>x^2 - 1&#x3D; (sec t)^2 - 1 &#x3D; (tan t)^2</strong></em></p>
-<p><em><strong>csc^2x &#x3D; 1 + cot^2x</strong></em></p>
-<h4 id="b-第二类去根式"><a href="#b-第二类去根式" class="headerlink" title="b.第二类去根式"></a>b.第二类去根式</h4><p><em><strong>t &#x3D; (f(x))^(1&#x2F;2)</strong></em></p>
-<p><em><strong>则t^2 &#x3D; f(x) …</strong></em></p>
-<h4 id="c-第三类倒代换"><a href="#c-第三类倒代换" class="headerlink" title="c.第三类倒代换"></a>c.第三类倒代换</h4><p><strong>分母阶数较高时，可采用倒代换（x &#x3D; 1 &#x2F; t）</strong></p>
-<h4 id="d-第四类去根式"><a href="#d-第四类去根式" class="headerlink" title="d.第四类去根式"></a>d.第四类去根式</h4><p><strong>当被积分式存在不同次根式，应令t &#x3D; x ^ n, n 为根式次数倒数的最小公倍数</strong><br><em><strong>x^(1&#x2F;2) + x ^(1&#x2F;3) &#x3D; t^3 + t ^2, t^6 &#x3D; x</strong></em></p>
-<hr>
-<h2 id="四-分部积分"><a href="#四-分部积分" class="headerlink" title="四. 分部积分"></a>四. 分部积分</h2><p><strong>udv &#x3D; (uv)’ - vdu, 选u核心：v 容易求，且vdu的原函数比udv的原函数好求。</strong><br><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923192501.jpg" srcset="/img/loading.gif" lazyload></p>
-<h3 id="方法一：-为简化而分部积分"><a href="#方法一：-为简化而分部积分" class="headerlink" title="方法一： 为简化而分部积分"></a>方法一： 为简化而分部积分</h3><p><em><strong>如xe^xdx &#x3D; (xe^x)’ - e^xdx &#x3D; …, 显然有指数函数求导后复杂度不变，所以基本不选指数函数为u;</strong></em></p>
-<p><em><strong>对数函数求导后可以简化为幂函数； 所以常选对数函数为u;</strong></em></p>
-<h3 id="方法二：为造循环而分部"><a href="#方法二：为造循环而分部" class="headerlink" title="方法二：为造循环而分部"></a>方法二：为造循环而分部</h3><h4 id="典型例子"><a href="#典型例子" class="headerlink" title="典型例子"></a>典型例子</h4><p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194230.jpg" srcset="/img/loading.gif" lazyload><br><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923194255.jpg" srcset="/img/loading.gif" lazyload></p>
-<hr>
-<h2 id="五-有理函数积分"><a href="#五-有理函数积分" class="headerlink" title="五. 有理函数积分"></a>五. 有理函数积分</h2><p><strong>两个多项式之商，有理函数。</strong></p>
-<p><em><strong>核心：每个实系数多项式都可以分解为一些<code>一次</code>和<code>二次</code>的<code>不可约</code>多项式乘积（代数基本定理）</strong></em></p>
-<p><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923195846.jpg" srcset="/img/loading.gif" lazyload></p>
-<h3 id="步骤1-将有理函数化为真分数"><a href="#步骤1-将有理函数化为真分数" class="headerlink" title="步骤1 : 将有理函数化为真分数."></a>步骤1 : 将有理函数化为真分数.</h3><h3 id="步骤2-化为上图的和形式"><a href="#步骤2-化为上图的和形式" class="headerlink" title="步骤2 : 化为上图的和形式."></a>步骤2 : 化为上图的和形式.</h3><h3 id="步骤3-对于1-x-a-n可以直接积分"><a href="#步骤3-对于1-x-a-n可以直接积分" class="headerlink" title="步骤3 : 对于1&#x2F;(x+a)^n可以直接积分."></a>步骤3 : 对于1&#x2F;(x+a)^n可以直接积分.</h3><h3 id="步骤4-对于-ax-b-x-2-px-q-n-按如下积分："><a href="#步骤4-对于-ax-b-x-2-px-q-n-按如下积分：" class="headerlink" title="步骤4 : 对于(ax+b)&#x2F;(x^2+px+q)^n, 按如下积分："></a>步骤4 : 对于(ax+b)&#x2F;(x^2+px+q)^n, 按如下积分：</h3><p><em><strong>令t &#x3D; x + p&#x2F;2, 接下来…</strong></em><br><img src="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240923201034.jpg" srcset="/img/loading.gif" lazyload><br><em><strong>加号左边可以tdt化为1&#x2F;2d(t^2+a^2)来积分（积分结果为有理函数分式）， 加号右边可以分部积分，求In的递推式即可(积分结果会出现反三角函数)。</strong></em></p>
-<hr>
-<h2 id="六-可化为有理函数的积分"><a href="#六-可化为有理函数的积分" class="headerlink" title="六. 可化为有理函数的积分"></a>六. 可化为有理函数的积分</h2><h3 id="1-三角函数有理式R-sinx-cosx"><a href="#1-三角函数有理式R-sinx-cosx" class="headerlink" title="1. 三角函数有理式R(sinx, cosx)"></a>1. 三角函数有理式R(sinx, cosx)</h3><p><em><strong>u &#x3D; tan x&#x2F;2</strong></em></p>
-<p><em><strong>sin x &#x3D; 2u&#x2F;(1+u^2)</strong></em></p>
-<p><em><strong>cos x &#x3D; (1-u^2)&#x2F;(1+u^2)</strong></em></p>
-<p><em><strong>dx &#x3D; 2&#x2F;(1+u^2)du</strong></em></p>
-<p>或</p>
-<p><em><strong>u &#x3D; tan x</strong></em></p>
-<p><em><strong>sin x &#x3D; u&#x2F;(1+u^2)^(1&#x2F;2)</strong></em></p>
-<p><em><strong>cos x &#x3D; 1&#x2F;(1+u^2)^(1&#x2F;2)</strong></em></p>
-<p><em><strong>dx &#x3D; 1&#x2F;(1+u^2)du</strong></em></p>
-<hr>
-<h3 id="2-其他化为有理函数的积分"><a href="#2-其他化为有理函数的积分" class="headerlink" title="2. 其他化为有理函数的积分"></a>2. 其他化为有理函数的积分</h3><p><em><strong>u &#x3D; e^x, dx &#x3D; 1&#x2F;u du</strong></em></p>
-<p><strong>显然消除了指数函数，转换为有理形式了，更适用于指数函数多而杂的分式</strong></p>
-<hr>
-<h3 id="3-简化无理函数的积分"><a href="#3-简化无理函数的积分" class="headerlink" title="3. 简化无理函数的积分"></a>3. 简化无理函数的积分</h3><p><em><strong>讨论类型R(x, [(ax+b)&#x2F;(cx+d)]^1&#x2F;n)</strong></em></p>
-<p><strong>核心：去根号，令t &#x3D; [(ax+b)&#x2F;(cx+d)]^1&#x2F;n, x &#x3D; f(t^n)</strong></p>
 
                 
               </div>
@@ -356,6 +336,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="print-no-link">#算法设计与分析</a>
+      
+    </div>
+  
 </div>
 
 
@@ -364,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>不定积分</div>
-      <div>https://poirotyyds.github.io/2024/09/23/不定积分/</div>
+      <div>分治</div>
+      <div>https://poirotyyds.github.io/2024/09/25/分治/</div>
     </div>
     <div class="license-meta">
       
@@ -377,7 +364,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月23日</div>
+          <div>2024年9月25日</div>
         </div>
       
       
@@ -409,18 +396,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/25/%E5%88%86%E6%B2%BB/" title="分治">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">分治</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/23/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2024/09/23/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86/" title="不定积分">
+                        <span class="hidden-mobile">不定积分</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

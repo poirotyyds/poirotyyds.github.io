@@ -245,28 +245,6 @@
 
           
           
-          <li>
-            <a href="/categories/">
-              
-              分类
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          
-          
-          <li>
-            <a href="/about/">
-              
-              关于
-              
-              
-            </a>
-          </li>
-          
           
           
           <li>
@@ -284,6 +262,28 @@
             <a href="/archive/">
               
               归档
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/about/">
+              
+              关于
               
               
             </a>
@@ -480,31 +480,28 @@
   <!-- top end -->
   
 
-  <a href="/cn/Hexo-Theme-LiveMyLife/">
+  <a href="/cn/arm64/">
     <h2 class="post-title">
-      Hexo-Theme-LiveMyLife
+      arm64
     </h2>
     <h3 class="post-subtitle">
-      A succinct hexo theme...
+      
     </h3>
     <div class="post-content-preview">
-      
-移植 Hux Blog 的主题，感谢 Huxpro 设计了如此完美的主题。
-由 Vincent 创建的 LiveMyLife 的主题修改来源 YenYuHsuan，参考主题 dusign、Utone，感谢 dusign、Utone。
-
-仓库
-Github 仓库地址：https://github.com/V-Vincen/hexo-theme-livemylife
-Gitee 仓库地址：ht......
+      Arm64中特别指令
+曾经认为写汇编很无聊，但是工作中却感受不同，每个汇编代码的实现，就像是告诉机器如何执行、按如何规程来执行代码，这比告诉对接人需要的接口，或者告诉对接人自己实现的接口要轻松很多。
+目录
+之前在写5级流水线cpu时，写了一些mips汇编，所以指令都比较少，在模版解释器工作中，arm64汇编模版中有很多类似的指令，但是有许多单指令多作用的便捷指令，我认为值得记录下来，下面是我......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by poirot on
-    2020-04-17
+    2025-12-28
   </p>
   <div class="tags">
     
-    <a href="/tags/#Hexo-Theme-LiveMyLife" title="Hexo-Theme-LiveMyLife">Hexo-Theme-LiveMyLife</a>
+    <a href="/tags/#汇编" title="汇编">汇编</a>
     
   </div>
   
@@ -556,7 +553,7 @@ Gitee 仓库地址：ht......
   <div class="tags">
     
     
-    <a href="/tags/#Hexo-Theme-LiveMyLife" title="Hexo-Theme-LiveMyLife" rel="2">Hexo-Theme-LiveMyLife</a>
+    <a href="/tags/#汇编" title="汇编" rel="1">汇编</a>
     
     
   </div>
@@ -619,12 +616,8 @@ Gitee 仓库地址：ht......
 <div class="widget">
   <ul>
     
-    <a href="Hexo-Theme-LiveMyLife/">
-      <li>Hexo-Theme-LiveMyLife</li>
-    </a>
-    
-    <a href="../en/Hexo-Theme-LiveMyLife/">
-      <li>Hexo-Theme-LiveMyLife</li>
+    <a href="arm64/">
+      <li>arm64</li>
     </a>
     
   </ul>
@@ -647,7 +640,7 @@ Gitee 仓库地址：ht......
 
 <h5><a href="/archives/">archives</a></h5>
 <div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li></ul>
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2025/12/">December 2025</a><span class="archive-list-count">1</span></li></ul>
 </div>
 
 
@@ -659,8 +652,8 @@ Gitee 仓库地址：ht......
 <div class="widget">
   <ul>
     
-    <a href="/categories/#Hexo-Theme-LiveMyLife">
-      <li>Hexo-Theme-LiveMyLife</li>
+    <a href="/categories/#汇编">
+      <li>汇编</li>
     </a>
     
   </ul>
@@ -1182,5 +1175,20 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
 
 
 		
-	</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
 </html>

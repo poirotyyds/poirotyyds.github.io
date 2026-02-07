@@ -259,9 +259,9 @@
           
           
           <li>
-            <a href="/about/">
+            <a href="/categories/">
               
-              ABOUT
+              CATEGORIES
               
               
             </a>
@@ -270,9 +270,9 @@
           
           
           <li>
-            <a href="/categories/">
+            <a href="/about/">
               
-              CATEGORIES
+              ABOUT
               
               
             </a>
@@ -465,15 +465,42 @@
       <!-- 标签云 -->
       <div id='tag_cloud' class="tags">
         
-        <a href="#汇编" title="汇编" rel="1">汇编</a>
-        
         <a href="#编译器" title="编译器" rel="1">编译器</a>
+        
+        <a href="#汇编" title="汇编" rel="1">汇编</a>
         
         <a href="#模版解释器" title="模版解释器" rel="1">模版解释器</a>
         
       </div>
 
       <!-- 标签列表 -->
+      
+      <div class="one-tag-list">
+        <span class="fa fa-tag listing-seperator" id="编译器">
+          <span class="tag-text">编译器</span>
+        </span>
+        
+        <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+        <div class="post-preview">
+          <a href="/en/SysY-Compiler/">
+            <h2 class="post-title">
+              SysY-Compiler
+              
+            </h2>
+            
+            <h3 class="post-subtitle">
+              编译器课设
+            </h3>
+            
+          </a>
+          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+        </div>
+        <hr>
+        
+      </div>
       
       <div class="one-tag-list">
         <span class="fa fa-tag listing-seperator" id="汇编">
@@ -495,33 +522,6 @@
             
             <h3 class="post-subtitle">
               模版解释器中用到的基本功
-            </h3>
-            
-          </a>
-          <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </div>
-        <hr>
-        
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-tag listing-seperator" id="编译器">
-          <span class="tag-text">编译器</span>
-        </span>
-        
-        <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-        <div class="post-preview">
-          <a href="/en/SysY-Compiler/">
-            <h2 class="post-title">
-              SysY-Compiler
-              
-            </h2>
-            
-            <h3 class="post-subtitle">
-              编译器课设
             </h3>
             
           </a>
@@ -602,7 +602,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           poirot
-            2025
+            2026
               <br>
               Theme by
               <a target="_blank" rel="noopener" href="https://github.com/poirotyyds">poirot</a>

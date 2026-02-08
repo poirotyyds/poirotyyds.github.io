@@ -245,8 +245,6 @@
 
           
           
-          
-          
           <li>
             <a href="/archive/">
               
@@ -269,10 +267,12 @@
           
           
           
+          
+          
           <li>
-            <a href="/about/">
+            <a href="/tags/">
               
-              ABOUT
+              TAGS
               
               
             </a>
@@ -281,9 +281,9 @@
           
           
           <li>
-            <a href="/tags/">
+            <a href="/about/">
               
-              TAGS
+              ABOUT
               
               
             </a>
@@ -391,6 +391,10 @@
           <div class="post-heading">
             <div class="tags">
               
+              <a class="tag" href="/tags/#ML" title="ML">ML</a>
+              
+              <a class="tag" href="/tags/#linear regression" title="linear regression">linear regression</a>
+              
             </div>
             <h1>Machine Learning&#39;s Simple ideas</h1>
             <h2 class="subheading"></h2>
@@ -404,11 +408,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">9</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">0</span> In Total
+              Words <span class="post-count">2.4k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -470,7 +474,246 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        
+        <p>机器学习不同于传统程序的控制流，是利用输入和输出产生模型，也有可能是将输入产生输出并构建模型。</p>
+<ul>
+<li>监督</li>
+<li>无监督</li>
+<li>半</li>
+<li>弱监督：标签不一定精确</li>
+<li>增强学习：延迟奖励</li>
+</ul>
+<blockquote>
+<p>易混点:分类中准确率是指判断的准确比例，所有判断为阳性中确实为阳性的占比<br>
+而召回率是指样本中事实阳性中，判断出来为真阳性的占比。</p>
+</blockquote>
+<h2 id="一-贝叶斯">一.贝叶斯</h2>
+<h3 id="概率与决策">概率与决策</h3>
+<p>核心是概率他统计中P(h|D)在D数据集观测中，假说成立的概率，前提知道P(D| h)<strong>似然：假说下特征出现的概率</strong>、ph。<br>
+求解后验概率本质的分母其实对于决策而言无实际意义，因为一张图像D分母pD对于任意h的后验概率分母都一样，<strong>决策重在比较出最优</strong></p>
+<h3 id="贝叶斯决策">贝叶斯决策</h3>
+<p>重点在于各类别先验概率和不同类别各自对应n维特征的后验概率p(xi|某类别)</p>
+<ul>
+<li>修正：<br>
+最后求出了各种根据后验做出的决策可能，但需要加入各种决策的风险，因为不同分类的意义不同。<br>
+对于分类为第i类的风险为ri = sigma lji × p (hj|D),遍历比较r，找出最小风险的i。</li>
+</ul>
+<h4 id="朴素贝叶斯">朴素贝叶斯</h4>
+<p>w = arg max[wi] p(wi | x1, x2,…, xn);arg表示取最大值对应的wi。</p>
+<ul>
+<li>先验概率
+<ul>
+<li>统计</li>
+</ul>
+</li>
+<li>似然
+<ul>
+<li>连续特征——用近似概率密度分布</li>
+<li>离散特征——概率即似然</li>
+</ul>
+</li>
+<li>后验：假设不同特征独立，即似然积*先验概率</li>
+</ul>
+<h4 id="多分类">多分类</h4>
+<ul>
+<li>化为二分类：本类和非本类</li>
+<li>比较Cn2次，</li>
+<li>贝叶斯，n类n个函数fi=p(x1,x2…xn | 类i)*p(类i)，选最大的概率</li>
+</ul>
+<h4 id="图特征">图特征</h4>
+<ul>
+<li>灰度直方图：不同灰度区间作为特征，将该同类同区间（如0-15）的频率的分布<strong>近似为高斯分布</strong></li>
+</ul>
+<h3 id="model">model</h3>
+<h4 id="特征提取细节"><strong>特征提取细节</strong></h4>
+<ol>
+<li><strong>255级灰度压缩到16维</strong>：
+<ul>
+<li>原始灰度0-255 → 分成16个区间（每区间16个灰度级）</li>
+<li>每个特征 = 对应区间的像素频率</li>
+<li>特征向量：<code>[bin1_freq, bin2_freq, ..., bin16_freq]</code>，总和为1</li>
+</ul>
+</li>
+</ol>
+<h4 id="高斯建模过程"><strong>高斯建模过程</strong></h4>
+<p><strong>为每一类、每一个特征维度单独拟合一个高斯分布</strong>：</p>
+<h4 id="训练阶段（每类10张图）"><strong>训练阶段</strong>（每类10张图）</h4>
+<p>对于类别 (C_k)：</p>
+<ul>
+<li>对于第 (j) 个特征维度（第 (j) 个直方图bin）</li>
+<li>收集该类10张图中，该bin的频率值：(x_{j,1}, x_{j,2}, …, x_{j,10})</li>
+<li>计算均值和方差：<br>
+[<br>
+\mu_{k,j} = \frac{1}{10} \sum_{i=1}^{10} x_{j,i}<br>
+]<br>
+[<br>
+\sigma^2_{k,j} = \frac{1}{10} \sum_{i=1}^{10} (x_{j,i} - \mu_{k,j})^2<br>
+]</li>
+<li>这样得到16组 ((\mu_{k,j}, \sigma^2_{k,j}))，代表这个类别在这个特征上的分布</li>
+</ul>
+<h4 id="关键点澄清"><strong>关键点澄清</strong></h4>
+<ol>
+<li>
+<p><strong>是概率密度，不是概率</strong>：</p>
+<ul>
+<li>因为是连续特征，所以用<strong>概率密度函数</strong></li>
+<li>比较时只需要相对大小，所以可以忽略归一化常数</li>
+</ul>
+</li>
+<li>
+<p><strong>&quot;近似为高斯分布&quot;的含义</strong>：</p>
+<ul>
+<li>我们<strong>假设</strong>每个特征在给定类别下服从高斯分布</li>
+<li>用训练数据的均值和方差来估计这个分布的参数</li>
+<li>实际数据可能不完美符合高斯，但作为简化模型</li>
+</ul>
+</li>
+<li>
+<p><strong>朴素贝叶斯的&quot;朴素&quot;</strong>：</p>
+<ul>
+<li>假设16个特征之间相互独立</li>
+<li>所以联合概率密度 = 各自概率密度的乘积</li>
+</ul>
+</li>
+</ol>
+<h4 id="例子中的具体计算"><strong>例子中的具体计算</strong></h4>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">F_1_val = <span class="number">0.2</span>;  <span class="comment">% 先验概率</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:<span class="number">16</span></span><br><span class="line">    <span class="comment">% F_1(1,j) = 类别1第j个特征的均值</span></span><br><span class="line">    <span class="comment">% F_1(2,j) = 类别1第j个特征的方差</span></span><br><span class="line">    <span class="comment">% n(j) = 测试图第j个特征的值</span></span><br><span class="line">    likelihood = <span class="number">1</span>/(<span class="built_in">sqrt</span>(<span class="number">2</span>*<span class="built_in">pi</span>*F_1(<span class="number">2</span>,<span class="built_in">j</span>))) * <span class="built_in">exp</span>(-((n(<span class="built_in">j</span>)-F_1(<span class="number">1</span>,<span class="built_in">j</span>))^<span class="number">2</span>)/(<span class="number">2</span>*F_1(<span class="number">2</span>,<span class="built_in">j</span>)));</span><br><span class="line">    F_1_val = F_1_val * likelihood;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>这样算出的就是测试图属于类别1的未归一化后验概率。</p>
+<h4 id="为什么这样做可能有效？"><strong>为什么这样做可能有效？</strong></h4>
+<p>即使直方图频率不完全符合高斯分布：</p>
+<ol>
+<li>如果不同类别的飞机在某些灰度区间有系统性差异</li>
+<li>均值和方差能捕捉这些差异</li>
+<li>朴素贝叶斯分类器在特征相关性不高时效果不错</li>
+</ol>
+<p>但确实，对于直方图这种<strong>多峰分布</strong>或<strong>有界分布</strong>，<strong>Beta分布</strong>可能更合适，但实现复杂。高斯模型是工程上的折中选择。</p>
+<p><strong>总结</strong>：你说的完全正确——这就是一个为每类每个特征单独拟合高斯分布，然后用概率密度作为似然的朴素贝叶斯分类器。</p>
+<h2 id="二-聚类——无监督（无标签）">二.聚类——无监督（无标签）</h2>
+<h3 id="1-K-means聚类：heuristic算法">1.K-means聚类：heuristic算法</h3>
+<h3 id="2-EM最大似然-后验概率的统计模型参数">2.EM最大似然/后验概率的统计模型参数</h3>
+<ol>
+<li>初始化参数</li>
+<li>根据当前期望，最大化期望来优化参数</li>
+<li>重复2直至算法收敛。<br>
+k-means：</li>
+</ol>
+<ul>
+<li>初始化k类</li>
+<li>E:更新假说C成立概率</li>
+<li>M：重新估计参数——均值</li>
+</ul>
+<h3 id="3-层次化聚类hierarchical">3.层次化聚类hierarchical</h3>
+<p>n点每个点自己一类，要n类则不用操作；逐渐聚类最近的点，需要几类则从n类慢慢聚集为所需类数，<br>
+聚类中距离的远近定义是算法的核心问题。</p>
+<ul>
+<li>min:两类中最近的地方为距离——噪声</li>
+<li>max：最远——破坏大类<br>
+<strong>类别间的关系矩阵</strong><br>
+合并i、j类——则距离矩阵中关于i、j的行列都需更新</li>
+</ul>
+<h2 id="三-特征">三.特征</h2>
+<h3 id="1-特征选择——Cnm">1.特征选择——Cnm</h3>
+<h4 id="SFS序列前向搜索">SFS序列前向搜索</h4>
+<p>1000维度找10维度比较好，1000中挑999不适合；</p>
+<ol>
+<li>找到最优特征</li>
+<li>找剩余特征与已选择特征最佳组合</li>
+<li>循环2，直到维数足够或性能不增。</li>
+</ol>
+<h4 id="SBS">SBS</h4>
+<ol>
+<li>找到最差特征，扔掉</li>
+<li>找次差，扔小</li>
+<li>循环2</li>
+</ol>
+<h4 id="双向搜索">双向搜索</h4>
+<p>SFS无法将已加入的变得无用特征移出，SBS无法把删除的变有用的填入。</p>
+<ol>
+<li>从空集执行SFS，从全集执行SBS</li>
+<li>SFS选的特征不会移出，SBS移出的特征，SFS不会填入</li>
+</ol>
+<h4 id="LRS——SFS和SBS的泛化，步伐可以不为1">LRS——SFS和SBS的泛化，步伐可以不为1</h4>
+<p>若L&gt;R，先迭代增加L维特征，再迭代移出R维特征</p>
+<h4 id="扩展LRS——sequence-floating-selection">扩展LRS——sequence floating selection</h4>
+<p>LR可变。</p>
+<h3 id="2-特征约简：高维映射低维度——机票——-快、价格、安全">2.特征约简：高维映射低维度——机票——&gt;快、价格、安全</h3>
+<p>x维变为b维，Ax=b,求最优阵A</p>
+<h4 id="PCA主成分分析">PCA主成分分析</h4>
+<h2 id="四-线性回归中的方法、思想">四.线性回归中的方法、思想</h2>
+<h4 id="1-梯度下降gradient-descent——linear-regression">1.梯度下降gradient descent——linear regression</h4>
+<ul>
+<li>model:y=wx+b</li>
+<li>j(w,b)=偏差平方和/2m ——&gt; <strong>只有一个极小值</strong></li>
+<li>每一个batch计算当前参数w，b的cost函数J(w,b):利用训练集的每个数据<br>
+w = w - af,f为J对w偏导，这个式子：斜率绝对值越大，|derta w|越大，<br>
+接近local minimal时，|derta w|越小，防止越过极值点，代价变大，从而j变大逐渐，可能发散。</li>
+</ul>
+<h4 id="2-向量化">2.向量化</h4>
+<p>vector操作向量点积等，利用numpy的向量操作库。</p>
+<h4 id="3-normal-equation快速求解线性回归的参数，而不适用于其他model">3.normal equation快速求解线性回归的参数，而不适用于其他model</h4>
+<h4 id="4-不同特征范围差别大？小范围特征微小变化结果变化显著——影响梯度下降迭代次数">4.不同特征范围差别大？小范围特征微小变化结果变化显著——影响梯度下降迭代次数</h4>
+<ol>
+<li>特征缩放：scale缩放为0~1，如x1：300~2000，x1/2000:0.15~1</li>
+<li>mean normalization:x2(0~5),样本均值为3，则x2=(x2-mean_x2)/(5-0)</li>
+<li>Z-score normalization化为标准正太分布:计算特征的S(standard deviation)：(X-mean)/sigma;</li>
+</ol>
+<h4 id="5-判断合适iterations：梯度下降迭代收敛">5.判断合适iterations：梯度下降迭代收敛</h4>
+<ol>
+<li>学习曲线——绘制J-iterations</li>
+<li>自动判断收敛:epsilon &gt; derta J</li>
+</ol>
+<h4 id="6-选择合适的learning-rate">6.选择合适的learning rate</h4>
+<ol>
+<li>太小-&gt;太慢</li>
+<li>太大—&gt;步辐越来越大-&gt;not converge</li>
+</ol>
+<p>启发：<strong>如果学习率很小（用于测试），J都不再下降而是上升，说明有bug</strong><br>
+测试并绘制learning curve:0.001 -&gt; 0.01 -&gt; 0.1 -&gt; 1 …</p>
+<h4 id="7-特征工程">7.特征工程</h4>
+<ol>
+<li>去除重复信息特征， 或创造新特征：如收入特征=数量特征x单价特征</li>
+<li>神经网络，无需人工特征工程</li>
+</ol>
+<h4 id="8-多项式回归，将特征提升到n次">8.多项式回归，将特征提升到n次</h4>
+<p>绘制y与x^n图像，若线性则取n</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = np.arange(<span class="number">0</span>,<span class="number">20</span>,<span class="number">1</span>)</span><br><span class="line">y = np.cos(x/<span class="number">2</span>) <span class="string">&quot;&quot;&quot;target，待拟合&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;将特征x不同次作为新特征，np.c_可能是转置？？&quot;&quot;&quot;</span></span><br><span class="line">X = np.c_[x, x**<span class="number">2</span>, x**<span class="number">3</span>,x**<span class="number">4</span>, x**<span class="number">5</span>, x**<span class="number">6</span>, x**<span class="number">7</span>, x**<span class="number">8</span>, x**<span class="number">9</span>, x**<span class="number">10</span>, x**<span class="number">11</span>, x**<span class="number">12</span>, x**<span class="number">13</span>]</span><br><span class="line">X = zscore_normalize_features(X) </span><br><span class="line"></span><br><span class="line">model_w,model_b = run_gradient_descent_feng(X, y, iterations=<span class="number">1000000</span>, alpha = <span class="number">1e-1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="五-logistics-regression">五.logistics regression</h2>
+<ol>
+<li>sigmoid function:y=1/(1+e^-x)</li>
+</ol>
+<ul>
+<li>决策边界w·x+b = 0</li>
+</ul>
+<ol start="2">
+<li>Loss,为了梯度下降，代价函数最好是2次或线性函数，而预测函数为值域小于1的凸函数，<br>
+取对数后，真值为1时，-log f越接近0，f接近1真值，-log(1-f)是估计误差样本为negative时与预测值误差</li>
+<li>cost = sigma(-ylog(fw,b(x)) - (1-y)log(1-fw,b(x))) / m</li>
+<li>dcost_dwj = sigma(fw,b(xi) - yi)xi / m<br>
+dcost_db = sigma(fw,b(xi) - yi) / m</li>
+</ol>
+<h4 id="1-拟合与正则化">1.拟合与正则化</h4>
+<p>欠拟合是指样本与预测高偏差——预测特征少<br>
+过拟合是指高方差——预测特征多</p>
+<h5 id="address-overfitting">address overfitting</h5>
+<ol>
+<li>收集更多训练数据</li>
+<li>减少特征数，忽略不显著特征——特征选择</li>
+</ol>
+<ul>
+<li>前向序列</li>
+<li>后向</li>
+<li>双向/步辐</li>
+</ul>
+<ol start="3">
+<li>正则化：保留特征，而减小参数wj，即缩小不重要特征的影响或作用，极端设置0——即减少特征<br>
+lamda：正则化参数<br>
+（1）成本函数中加入lamda sigma wj^2 / 2m<br>
+（2）由于最小化会使cost减小，加入对所有参数wj的惩罚，从而减小wj<br>
+（3）即正则化<br>
+lamda是表示对于cost函数中拟合误差成本、过拟合成本的相对重要性<br>
+lamda越大——欠拟合<br>
+lamda越小——可能过拟合</li>
+</ol>
+
 
         <hr>
         <!-- Pager -->
@@ -614,7 +857,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%B8%80-%E8%B4%9D%E5%8F%B6%E6%96%AF"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">一.贝叶斯</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%A6%82%E7%8E%87%E4%B8%8E%E5%86%B3%E7%AD%96"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">概率与决策</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%86%B3%E7%AD%96"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">贝叶斯决策</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF"><span class="toc-nav-number">1.2.1.</span> <span class="toc-nav-text">朴素贝叶斯</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB"><span class="toc-nav-number">1.2.2.</span> <span class="toc-nav-text">多分类</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%9B%BE%E7%89%B9%E5%BE%81"><span class="toc-nav-number">1.2.3.</span> <span class="toc-nav-text">图特征</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#model"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">model</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E7%BB%86%E8%8A%82"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">特征提取细节</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%AB%98%E6%96%AF%E5%BB%BA%E6%A8%A1%E8%BF%87%E7%A8%8B"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">高斯建模过程</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%AE%AD%E7%BB%83%E9%98%B6%E6%AE%B5%EF%BC%88%E6%AF%8F%E7%B1%BB10%E5%BC%A0%E5%9B%BE%EF%BC%89"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">训练阶段（每类10张图）</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9%E6%BE%84%E6%B8%85"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">关键点澄清</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%BE%8B%E5%AD%90%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E8%AE%A1%E7%AE%97"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">例子中的具体计算</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%A0%B7%E5%81%9A%E5%8F%AF%E8%83%BD%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-nav-number">1.3.6.</span> <span class="toc-nav-text">为什么这样做可能有效？</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BA%8C-%E8%81%9A%E7%B1%BB%E2%80%94%E2%80%94%E6%97%A0%E7%9B%91%E7%9D%A3%EF%BC%88%E6%97%A0%E6%A0%87%E7%AD%BE%EF%BC%89"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">二.聚类——无监督（无标签）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-K-means%E8%81%9A%E7%B1%BB%EF%BC%9Aheuristic%E7%AE%97%E6%B3%95"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">1.K-means聚类：heuristic算法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-EM%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6-%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E7%9A%84%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">2.EM最大似然&#x2F;后验概率的统计模型参数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-%E5%B1%82%E6%AC%A1%E5%8C%96%E8%81%9A%E7%B1%BBhierarchical"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">3.层次化聚类hierarchical</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%B8%89-%E7%89%B9%E5%BE%81"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">三.特征</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94Cnm"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">1.特征选择——Cnm</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#SFS%E5%BA%8F%E5%88%97%E5%89%8D%E5%90%91%E6%90%9C%E7%B4%A2"><span class="toc-nav-number">3.1.1.</span> <span class="toc-nav-text">SFS序列前向搜索</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#SBS"><span class="toc-nav-number">3.1.2.</span> <span class="toc-nav-text">SBS</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%8F%8C%E5%90%91%E6%90%9C%E7%B4%A2"><span class="toc-nav-number">3.1.3.</span> <span class="toc-nav-text">双向搜索</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#LRS%E2%80%94%E2%80%94SFS%E5%92%8CSBS%E7%9A%84%E6%B3%9B%E5%8C%96%EF%BC%8C%E6%AD%A5%E4%BC%90%E5%8F%AF%E4%BB%A5%E4%B8%8D%E4%B8%BA1"><span class="toc-nav-number">3.1.4.</span> <span class="toc-nav-text">LRS——SFS和SBS的泛化，步伐可以不为1</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%89%A9%E5%B1%95LRS%E2%80%94%E2%80%94sequence-floating-selection"><span class="toc-nav-number">3.1.5.</span> <span class="toc-nav-text">扩展LRS——sequence floating selection</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-%E7%89%B9%E5%BE%81%E7%BA%A6%E7%AE%80%EF%BC%9A%E9%AB%98%E7%BB%B4%E6%98%A0%E5%B0%84%E4%BD%8E%E7%BB%B4%E5%BA%A6%E2%80%94%E2%80%94%E6%9C%BA%E7%A5%A8%E2%80%94%E2%80%94-%E5%BF%AB%E3%80%81%E4%BB%B7%E6%A0%BC%E3%80%81%E5%AE%89%E5%85%A8"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">2.特征约简：高维映射低维度——机票——&gt;快、价格、安全</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#PCA%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">PCA主成分分析</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9B%9B-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%81%E6%80%9D%E6%83%B3"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">四.线性回归中的方法、思想</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8Dgradient-descent%E2%80%94%E2%80%94linear-regression"><span class="toc-nav-number">4.0.1.</span> <span class="toc-nav-text">1.梯度下降gradient descent——linear regression</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-%E5%90%91%E9%87%8F%E5%8C%96"><span class="toc-nav-number">4.0.2.</span> <span class="toc-nav-text">2.向量化</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-normal-equation%E5%BF%AB%E9%80%9F%E6%B1%82%E8%A7%A3%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%8C%E8%80%8C%E4%B8%8D%E9%80%82%E7%94%A8%E4%BA%8E%E5%85%B6%E4%BB%96model"><span class="toc-nav-number">4.0.3.</span> <span class="toc-nav-text">3.normal equation快速求解线性回归的参数，而不适用于其他model</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-%E4%B8%8D%E5%90%8C%E7%89%B9%E5%BE%81%E8%8C%83%E5%9B%B4%E5%B7%AE%E5%88%AB%E5%A4%A7%EF%BC%9F%E5%B0%8F%E8%8C%83%E5%9B%B4%E7%89%B9%E5%BE%81%E5%BE%AE%E5%B0%8F%E5%8F%98%E5%8C%96%E7%BB%93%E6%9E%9C%E5%8F%98%E5%8C%96%E6%98%BE%E8%91%97%E2%80%94%E2%80%94%E5%BD%B1%E5%93%8D%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E8%BF%AD%E4%BB%A3%E6%AC%A1%E6%95%B0"><span class="toc-nav-number">4.0.4.</span> <span class="toc-nav-text">4.不同特征范围差别大？小范围特征微小变化结果变化显著——影响梯度下降迭代次数</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5-%E5%88%A4%E6%96%AD%E5%90%88%E9%80%82iterations%EF%BC%9A%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E8%BF%AD%E4%BB%A3%E6%94%B6%E6%95%9B"><span class="toc-nav-number">4.0.5.</span> <span class="toc-nav-text">5.判断合适iterations：梯度下降迭代收敛</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6-%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84learning-rate"><span class="toc-nav-number">4.0.6.</span> <span class="toc-nav-text">6.选择合适的learning rate</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#7-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="toc-nav-number">4.0.7.</span> <span class="toc-nav-text">7.特征工程</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#8-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92%EF%BC%8C%E5%B0%86%E7%89%B9%E5%BE%81%E6%8F%90%E5%8D%87%E5%88%B0n%E6%AC%A1"><span class="toc-nav-number">4.0.8.</span> <span class="toc-nav-text">8.多项式回归，将特征提升到n次</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BA%94-logistics-regression"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">五.logistics regression</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-%E6%8B%9F%E5%90%88%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-nav-number">5.0.1.</span> <span class="toc-nav-text">1.拟合与正则化</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#address-overfitting"><span class="toc-nav-number">5.0.1.1.</span> <span class="toc-nav-text">address overfitting</span></a></li></ol></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -636,6 +879,10 @@
             <a href="/tags/">FEATURED TAGS</a>
           </h5>
           <div class="tags">
+            
+            <a class="tag" href="/tags/#ML" title="ML">ML</a>
+            
+            <a class="tag" href="/tags/#linear regression" title="linear regression">linear regression</a>
             
           </div>
         </section>
